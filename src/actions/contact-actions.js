@@ -50,6 +50,11 @@ export const updateContact = (contact, success, error) => {
   addressBook.saveContact(contact).then(updatedContact => success(updatedContact)).catch(errors => error(errors));
 };
 
+export const toggleBlockedSetting = (contact, success, error) => {
+  contact.blocked = !contact.blocked;
+  addressBook.saveContact(contact).then(updatedContact => success(updatedContact)).catch(errors => error(errors));
+}
+
 //SINGLE CONTACT DISPATCH FUNCTIONS
 
 export const addStoreContact = (contact) => ({
@@ -75,6 +80,13 @@ export const clearCurrentContact = {
 
 export const updateCurrentContact = (contact) => ({
   type: "UPDATE_CURRENT_CONTACT",
+  payload: contact
+});
+
+//TOGGLE BLOCKED CONTACT DISPATCH
+
+export const toggleBlockedContact = (contact) => ({
+  type: "TOGGLE_BLOCKED_CONTACT_IN_DATABASE",
   payload: contact
 });
 

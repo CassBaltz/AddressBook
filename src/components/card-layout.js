@@ -34,7 +34,7 @@ const styles = {
       flexWrap: 'wrap',
       justifyContent: 'space-around',
       alignItems: 'center'
-    },
+    }
 };
 
 export default CardLayout;

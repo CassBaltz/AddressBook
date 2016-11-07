@@ -28,6 +28,4 @@ class ViewFilter extends Component {
   }
 }
 
-
-
 export default connect()(ViewFilter);

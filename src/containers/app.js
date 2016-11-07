@@ -8,6 +8,7 @@ import Body from '../components/body-component';
 import '../../css/App.css';
 
 import { LinearLoading } from '@bronto/components';
+import { colors } from '@bronto/components';
 
 class App extends Component {
   constructor(props) {
@@ -34,10 +35,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <Header viewState={this.props.viewState} />
-          {this.showContacts()}
-        </div>
+        <h3 style={headerStyle}>Address Book</h3>
+        <Header
+          viewState={this.props.viewState}
+          currentContact={this.props.currentContact} />
+        {this.showContacts()}
       </div>
     );
   }
@@ -53,6 +55,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   receiveContacts: () => dispatch(receiveContactsFromDatabase)
 });
+
+const headerStyle = {
+  display: 'block',
+  fontSize: '32px',
+  padding: '20px',
+  background: `${colors.dgrey50}`,
+  font: `${colors.dgrey400}`,
+  textAlign: 'center'
+}
 
 export default connect(
   mapStateToProps,

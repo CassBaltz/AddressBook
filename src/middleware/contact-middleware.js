@@ -4,7 +4,8 @@ import {
         updateContact,
         addStoreContact,
         removeStoreContact,
-        updateStoreContact
+        updateStoreContact,
+        toggleBlockedSetting
         } from '../actions/contact-actions';
 
 
@@ -37,6 +38,9 @@ const contactMiddleware = ( {dispatch} ) => next => action => {
       case "UPDATE_CONTACT_IN_DATABASE":
         updateContact(action.payload, updateSuccess, errorCallback);
         return next(action);
+
+      case "TOGGLE_BLOCKED_CONTACT_IN_DATABASE":
+        toggleBlockedSetting(action.payload, updateSuccess, errorCallback);
 
       default:
         return next(action);

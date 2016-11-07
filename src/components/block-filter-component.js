@@ -12,16 +12,17 @@ class BlockFilter extends Component {
   }
 
   toggleBlocked(e) {
-    this.props.dispatch(toggleBlockedContacts)
+    e.preventDefault();
+    this.props.dispatch(toggleBlockedContacts);
   }
 
   render() {
-    let text = this.props.viewState.hideBlocked ? "Show Blocked" : "Hide Blocked";
+    let text = this.props.viewState.hideBlocked ? "Show All" : "Hide Blocked";
     return (
       <ActionButton
         onClick={this.toggleBlocked}
         label={text}
-        raised={true}
+        style={{marginRight: '10px'}}
       />
     );
   }

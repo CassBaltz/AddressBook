@@ -9,17 +9,13 @@ class ListLayout extends Component {
   }
 
   mapListItems() {
-    let contacts = this.props.contacts;
-    if (contacts) {
+    const contacts = this.props.contacts;
       return contacts.map(contact => {
         return <ListItem
         key={contact.id}
         contactDetail={contact}
         />
       })
-    } else {
-      return <li>getting contacts</li>;
-    }
   }
 
   render() {

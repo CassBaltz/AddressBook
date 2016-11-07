@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import CardLayout from './card-layout';
 import ListLayout from './list-layout';
 
+import { colors } from '@bronto/components';
+
 class BodyComponent extends Component {
   constructor(props) {
     super(props)
@@ -21,12 +23,15 @@ class BodyComponent extends Component {
 
   render() {
     return (
-      <div id="body-comp-div">
+      <div style={styles}>
         {this.renderLayout()}
       </div>
     );
   }
 }
 
+const styles = {
+  background: `${colors.green50}`
+}
 
 export default BodyComponent;
