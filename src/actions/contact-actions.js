@@ -2,8 +2,6 @@ import { AddressBookController, Contact } from 'address-book-data';
 
 const addressBook = new AddressBookController ();
 
-addressBook.getContacts().then(contacts => {console.log('length', contacts.length)});
-
 //ALL CONTACTS DISPATCH FUNCTION
 
 export const receiveContactsFromDatabase = {

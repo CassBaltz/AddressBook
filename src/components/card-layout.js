@@ -10,30 +10,31 @@ class CardLayout extends Component {
 
   mapCardItems() {
     let contacts = this.props.contacts;
-
-    if (contacts) {
-      return contacts.map(contact => {
-        return <CardItem
-        key={contact.id}
-        contactDetail={contact}
-        />
-      });
-    } else {
-      return <h2>getting items</h2>
-    }
-
+    return this.props.contacts.map(contact => {
+      return <CardItem
+      key={contact.id}
+      contactDetail={contact}
+      />
+    });
   }
 
   render() {
     return (
-      <div>
-        <div>
-          {this.mapCardItems()}
-        </div>
+      <div className="card-layout-div" style={styles.root}>
+        {this.mapCardItems()}
       </div>
     );
   }
 }
 
+const styles = {
+    root: {
+      width: '100%',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      alignItems: 'center'
+    },
+};
 
 export default CardLayout;

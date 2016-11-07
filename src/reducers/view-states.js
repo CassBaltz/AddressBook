@@ -3,7 +3,8 @@ import merge from 'lodash/merge';
 const defaultState = {
   cardView: false,
   query: null,
-  hideBlocked: false
+  hideBlocked: false,
+  contactsFetched: false
 };
 
 const viewState = (state = defaultState, action) => {
@@ -19,6 +20,9 @@ const viewState = (state = defaultState, action) => {
 
     case "TOGGLE_BLOCKED_CONTACTS":
       return merge({}, state, {hideBlocked: !state.hideBlocked});
+
+    case "RESET_STORE_CONTACTS":
+      return merge({}, state, {contactsFetched: true});
 
     default:
       return state;

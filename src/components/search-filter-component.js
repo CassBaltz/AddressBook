@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { ActionField } from '@bronto/components';
+
 import { updateSearchQuery, clearSearchQuery } from '../actions/view-state-actions';
 
 class SearchFilter extends Component {
@@ -9,10 +11,9 @@ class SearchFilter extends Component {
     this.updateSearch = this.updateSearch.bind(this);
   }
 
-  updateSearch(e) {
-    e.preventDefault()
-    if (e.target.value) {
-      this.props.dispatch(updateSearchQuery(e.target.value))
+  updateSearch(query) {
+    if (query.value) {
+      this.props.dispatch(updateSearchQuery(query.value))
     } else {
       this.props.dispatch(clearSearchQuery)
     }
@@ -20,10 +21,12 @@ class SearchFilter extends Component {
 
   render() {
     return (
-      <input
-        type="text"
+      <ActionField
+        name="plainTextField"
+        width="200"
+        onChange={(query) => this.updateSearch(query)}
         placeholder="Search By Name"
-        onChange={this.updateSearch}
+        showClear={true}
       />
     );
   }

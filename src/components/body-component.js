@@ -21,7 +21,7 @@ class BodyComponent extends Component {
 
   render() {
     return (
-      <div>
+      <div id="body-comp-div">
         {this.renderLayout()}
       </div>
     );

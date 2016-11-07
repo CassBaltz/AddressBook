@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { ActionButton } from '@bronto/components';
+
 import { toggleLayoutView } from '../actions/view-state-actions';
 
 class ViewFilter extends Component {
@@ -10,13 +12,18 @@ class ViewFilter extends Component {
   }
 
   toggleLayout(e) {
+    e.preventDefault()
     this.props.dispatch(toggleLayoutView)
   }
 
   render() {
     let text = this.props.viewState.cardView ? "Show List View" : "Show Card View";
     return (
-      <button onClick={this.toggleLayout}>{text}</button>
+      <ActionButton
+        onClick={this.toggleLayout}
+        label={text}
+        raised={true}
+      />
     );
   }
 }
