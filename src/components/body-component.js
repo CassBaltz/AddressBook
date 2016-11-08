@@ -31,7 +31,8 @@ class BodyComponent extends Component {
 }
 
 const styles = {
-  background: `${colors.green50}`
+  background: `${colors.green50}`,
+  minHeight: '85vh'
 }
 
 export default BodyComponent;

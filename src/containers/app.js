@@ -7,8 +7,7 @@ import Header from '../components/header-component';
 import Body from '../components/body-component';
 import '../../css/App.css';
 
-import { LinearLoading } from '@bronto/components';
-import { colors } from '@bronto/components';
+import { LinearLoading, colors } from '@bronto/components';
 
 class App extends Component {
   constructor(props) {

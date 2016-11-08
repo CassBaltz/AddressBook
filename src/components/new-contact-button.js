@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { ActionButton } from '@bronto/components';
-import { colors } from '@bronto/components';
+import { ActionButton, colors } from '@bronto/components';
 
 import { updateCurrentContact } from '../actions/contact-actions';
 
