@@ -6,13 +6,17 @@ const contacts = (state = [], action) => {
       return alphabetizeContacts(action.payload);
 
     case "UPDATE_STORE_CONTACT":
-      return alphabetizeContacts(updateContact(state, action.payload));
+      const updated = alphabetizeContacts(updateContact(state, action.payload));
+      console.log('updated', updated);
+      return updated;
 
     case "REMOVE_STORE_CONTACT":
       return alphabetizeContacts(removeContact(state, action.payload));
 
     case "ADD_STORE_CONTACT":
-      return alphabetizeContacts(addContact(state, action.payload));
+      const newC = alphabetizeContacts(addContact(state, action.payload));
+      console.log('new', newC);
+      return newC;
 
     default:
       return state;

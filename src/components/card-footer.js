@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import { toggleBlockedContact, updateCurrentContact } from '../actions/contact-actions';
 
-import { ActionButton } from '@bronto/components';
-import { colors } from '@bronto/components';
+import { ActionButton, colors } from '@bronto/components';
 
 class CardFooter extends Component {
   constructor(props) {

@@ -24,6 +24,7 @@ class App extends Component {
       return <Body
         contacts={this.props.activeContacts}
         viewState={this.props.viewState}
+        currentContact={this.props.currentContact}
       />
     } else {
       return <LinearLoading
@@ -59,8 +60,8 @@ const headerStyle = {
   display: 'block',
   fontSize: '32px',
   padding: '20px',
-  background: `${colors.dgrey50}`,
-  font: `${colors.dgrey400}`,
+  background: `${colors.blue50}`,
+  color: `${colors.dgrey400}`,
   textAlign: 'center'
 }
 

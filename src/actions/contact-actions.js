@@ -72,6 +72,23 @@ export const updateStoreContact = (contact) => ({
   payload: contact
 });
 
+//SINGLE CONTACT DISPATCH FUNCTIONS
+
+export const deleteContactFromDatabase = (contact) => ({
+  type: "DELETE_CONTACT_FROM_DATABASE",
+  payload: contact
+});
+
+export const createContactInDatabase = (contact) => ({
+  type: "CREATE_NEW_CONTACT_IN_DATABASE",
+  payload: contact
+});
+
+export const updateContactInDatabase = (contact) => ({
+  type: "UPDATE_CONTACT_IN_DATABASE",
+  payload: contact
+});
+
 //CURRENT CONTACT DISPATCH FUNCTIONS
 
 export const clearCurrentContact = {

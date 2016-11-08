@@ -7,11 +7,14 @@
     "@bronto/components": "latest"
   },
   "dependencies": {
+    "address-book-data": "git+ssh://git@gitlab.brontolabs.com/marc.baumbach/address-book-data.git",
     "react": "^15.3.2",
+    "react-addons-update": "^15.3.2",
+    "react-date-picker": "^5.3.28",
+    "react-datepicker": "^0.34.0",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
-    "redux": "^3.6.0",
-    "address-book-data": "git+ssh://git@gitlab.brontolabs.com/marc.baumbach/address-book-data.git"
+    "redux": "^3.6.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -33,7 +33,8 @@ const styles = {
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'space-around',
-      alignItems: 'center'
+      alignItems: 'center',
+      paddingBottom: '30px',
     }
 };
 

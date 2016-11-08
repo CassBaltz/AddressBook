@@ -46,10 +46,31 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+tbody, tfoot, thead, tr, th, td {
+	padding: 10px;
+	text-align: left;
+}
+
+th {
+	font-size: 24px;
+	font-weight: 900;
+}
+
+thead {
+	border-bottom: 5px solid white;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}
+
 .App {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   font-size: 50px;
+	overflow-x: auto;
+	min-width: 900px;
 }
 
 /* End Reset */

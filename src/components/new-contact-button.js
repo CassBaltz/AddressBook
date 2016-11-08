@@ -14,13 +14,13 @@ class NewContactButton extends Component {
   openAction(e) {
     e.preventDefault();
     const contact = {
-      firstName: null,
-      lastName: null,
-      email: null,
-      imageUrl: null,
+      firstName: "",
+      lastName: "",
+      email: "",
+      imageUrl: "",
       gender: null,
       blocked: false,
-      birthday: null
+      birthday: ""
     };
     this.props.dispatch(updateCurrentContact(contact));
   }

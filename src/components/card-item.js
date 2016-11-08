@@ -24,12 +24,15 @@ class CardItem extends Component {
       "August", "September", "October",
       "November", "December"
     ];
+    if (date instanceof Date) {
+      const day = date.getDate();
+      const month = monthNames[date.getMonth()];
+      const year = date.getFullYear();
 
-    const day = date.getDate();
-    const month = monthNames[date.getMonth()];
-    const year = date.getFullYear();
-
-    return `${month} ${day}, ${year}`;
+      return `${month} ${day}, ${year}`;
+    } else {
+      return 'unknown'
+    }
   }
 
   clickableEmail(email) {
