@@ -19,25 +19,59 @@ class ContactForm extends Component {
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
     this.capitalize = this.capitalize.bind(this);
+    this.resetState = this.resetState.bind(this);
+    this.parseMonth = this.parseMonth.bind(this);
+    this.parseDay = this.parseDay.bind(this);
+    this.parseYear = this.parseYear.bind(this);
   }
 
   componentWillMount() {
-    this.setState({values: this.props.currentContact});
-    if (this.props.currentContact.id) {
-      this.setState({formType: 'update'})
-    } else {
-      this.setState({formType: 'new'})
-    }
+    this.resetState(this.props);
   }
 
   componentWillReceiveProps(props) {
-    console.log('receiveing props', props);
-    this.setState({values: this.props.currentContact});
+    this.resetState(props);
   }
 
+  resetState(props) {
+    this.setState({
+        values: props.currentContact,
+        month: this.parseMonth(props.currentContact.birthday),
+        day: this.parseDay(props.currentContact.birthday),
+        year: this.parseYear(props.currentContact.birthday)
+      });
+  }
+
+  parseMonth(date) {
+    if (date instanceof Date) {
+      let month = (parseInt(date.getMonth()) + 1).toString();
+      month = (month.length === 1) ? ('0' + month) : month;
+      return month;
+    }
+
+    return ''
+  }
+
+  parseDay(date) {
+    if (date instanceof Date) {
+      let day = (parseInt(date.getDate()) + 1).toString();
+      day = (day.length === 1) ? ('0' + day) : day;
+      return day;
+    }
+    return ''
+  }
+
+  parseYear(date) {
+    if (date instanceof Date) {
+      const year = date.getFullYear().toString();
+      return year;
+    }
+      return '';
+  }
+
+
   getHeaderText() {
-    const formType = this.state.formType;
-    const text = (formType === 'update') ? `Update ${this.props.currentContact.firstName} ${this.props.currentContact.lastName}'s Information` : 'Create New Contact';
+    const text = (this.state.values.id) ? `Update ${this.state.values.firstName} ${this.state.values.lastName}'s Information` : 'Create New Contact';
     return text;
   }
 
@@ -45,7 +79,6 @@ class ContactForm extends Component {
     if (name.length > 0) {
       return name[0].toUpperCase() + name.slice(1).toLowerCase();
     }
-
     return "";
   }
 
@@ -65,30 +98,51 @@ class ContactForm extends Component {
   }
 
   handleUpdate(e) {
+    let birthday;
     e.preventDefault();
-    this.props.dispatch(updateContactInDatabase(this.state.values));
+    let contact = this.state.values;
+    if (this.state.day && this.state.month && this.state.year) {
+      birthday = new Date(`${this.state.year}-${(parseInt(this.state.month) - 1).toString()}-${this.state.day}`)
+    } else {
+      birthday = null;
+    }
+    contact.birthday = birthday;
+    this.props.dispatch(updateContactInDatabase(contact));
     this.props.dispatch(clearCurrentContact);
   }
 
   handleCreate(e) {
+    let birthday;
     e.preventDefault();
+    let contact = this.state.values;
+    if (this.state.day && this.state.month && this.state.year) {
+      birthday = new Date(`${this.state.year}-${this.state.month}-${this.state.day}`)
+      if (!Date.parse(birthday)) {
+        birthday = null;
+      }
+    } else {
+      birthday = null;
+    }
+    contact.birthday = birthday;
     this.props.dispatch(createContactInDatabase(this.state.values));
     this.props.dispatch(clearCurrentContact);
   }
 
   dateToString(date) {
     if (date instanceof Date) {
-      const day = date.getDate();
-      const month = date.getMonth();
-      const year = date.getFullYear();
-      return `${year}-${month}-${day}`;
+      let day = (parseInt(date.getDate()) + 1).toString();
+      day = (day.length === 1) ? ('0' + day) : day;
+      let month = (parseInt(date.getMonth()) + 1).toString();
+      month = (month.length === 1) ? ('0' + month) : month;
+      const year = date.getFullYear().toString();
+      return year + '-' + month + '-' + day;
     } else {
       return ''
     }
   }
 
   renderSubmitButtons() {
-    if (this.state.formType === 'update') {
+    if (this.state.values.id) {
       return (
         <div style={styles.flex}>
           <ActionButton
@@ -105,16 +159,19 @@ class ContactForm extends Component {
       );
     } else {
       return (
-        <ActionButton
-          label='SUBMIT'
-          style={styles.submit}
-          onClick={this.handleCreate}
-        />
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <ActionButton
+            label='SUBMIT'
+            style={styles.submit}
+            onClick={this.handleCreate}
+            />
+        </div>
       );
     }
   }
 
   render() {
+    console.log('IN CONTACT FORM RENDER');
     return (
       <div style={styles.root}>
         <ActionButton
@@ -158,12 +215,33 @@ class ContactForm extends Component {
           </div>
           <div style={{marginBottom: '15px'}}>
             <FieldLabel label="Birthday" />
-            <input
-              type="date"
-              name="BirthdayField"
-              value={this.dateToString(this.state.values.birthday)}
-              onChange={this.updateBirthday}
+          <div style={{display: 'flex'}}>
+            <ActionField name="plainTextField"
+              value={this.state.month}
+              width={"100"}
+              placeholder="MM"
+              defaultValue={this.state.month}
+              onChange={(payload) => this.setState({
+                month: payload.value})}
             />
+            <ActionField name="plainTextField"
+              value={this.state.day}
+              width={"100"}
+              placeholder="DD"
+              defaultValue={this.state.day}
+              onChange={(payload) => this.setState({
+                day: payload.value})}
+            />
+            <ActionField name="plainTextField"
+              value={this.state.year}
+              width={"150"}
+              placeholder='YYYY'
+              defaultValue={this.state.year}
+              onChange={(payload) => this.setState({
+                year: payload.value})}
+            />
+          </div>
+
           </div>
           <div style={{marginBottom: '15px'}}>
             <FieldLabel label="Image Url" />
