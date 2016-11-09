@@ -11,7 +11,6 @@ import { RadioField, FieldLabel, ActionField, SelectField, colors, ActionButton 
 class ContactForm extends Component {
   constructor(props) {
     super(props)
-    this.state = {values: this.props.currentContact};
     this.getHeaderText = this.getHeaderText.bind(this);
     this.updateBirthday = this.updateBirthday.bind(this);
     this.renderSubmitButtons = this.renderSubmitButtons.bind(this);
@@ -23,11 +22,17 @@ class ContactForm extends Component {
   }
 
   componentWillMount() {
+    this.setState({values: this.props.currentContact});
     if (this.props.currentContact.id) {
       this.setState({formType: 'update'})
     } else {
       this.setState({formType: 'new'})
     }
+  }
+
+  componentWillReceiveProps(props) {
+    console.log('receiveing props', props);
+    this.setState({values: this.props.currentContact});
   }
 
   getHeaderText() {
