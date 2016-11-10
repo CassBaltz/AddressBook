@@ -27,8 +27,7 @@ class App extends Component {
         currentContact={this.props.currentContact}
       />
     } else {
-      return <LinearLoading
-                label="FETCHING CONTACTS"/>
+      return <LinearLoading/>
     }
   }
 
@@ -60,8 +59,8 @@ const headerStyle = {
   display: 'block',
   fontSize: '32px',
   padding: '20px',
-  background: `${colors.blue50}`,
-  color: `${colors.dgrey400}`,
+  background: colors.blue50,
+  color: colors.dgrey400,
   textAlign: 'center'
 }
 
